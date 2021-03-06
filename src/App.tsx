@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useLayoutEffect, useState } from "react";
+import { View } from "react-native";
+import Stats from "stats.js";
+import Translate from "./playground/reanimated/AnimatedStyles/Translate";
+const App = () => {
+  useLayoutEffect(() => {
+    console.log("LOL");
+    var stats = new Stats();
+    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild(stats.dom);
+    function animate() {
+      stats.begin();
+      stats.end();
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  });
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <View
+        style={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+        }}
+      >
+        <Translate />
+      </View>
+    </>
   );
-}
+};
 
 export default App;
