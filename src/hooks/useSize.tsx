@@ -6,8 +6,8 @@ const useSize = (elmRef: any) => {
 
   useLayoutEffect(() => {
     const handleResize = () => {
-      setWidth(elmRef.current.offsetWidth);
-      setHeight(elmRef.current.offsetHeight);
+      setWidth(elmRef?.current?.offsetWidth);
+      setHeight(elmRef?.current?.offsetHeight);
     };
 
     handleResize();
@@ -16,7 +16,7 @@ const useSize = (elmRef: any) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [elmRef.current]);
+  }, [elmRef?.current]);
 
   return { width, height };
 };

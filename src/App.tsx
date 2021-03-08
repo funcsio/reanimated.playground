@@ -1,13 +1,15 @@
 import React, { useLayoutEffect, useState } from "react";
 import { View } from "react-native";
 import Stats from "stats.js";
-import Translate from "./playground/reanimated/AnimatedStyles/Translate";
+import Root from "./containers";
+
 const App = () => {
   useLayoutEffect(() => {
-    console.log("LOL");
     var stats = new Stats();
     stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild(stats.dom);
+    stats.dom.style.position = "relative";
+    document.getElementById("stats-for-nerds")?.appendChild(stats.dom);
+
     function animate() {
       stats.begin();
       stats.end();
@@ -25,8 +27,12 @@ const App = () => {
           display: "flex",
         }}
       >
-        <Translate />
+        <Root />
       </View>
+      <div
+        id="stats-for-nerds"
+        style={{ position: "absolute", bottom: 0, right: 0 }}
+      ></div>
     </>
   );
 };

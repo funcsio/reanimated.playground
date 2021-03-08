@@ -15,10 +15,10 @@ import Animated, {
 } from "react-native-reanimated";
 import Draggable, { DraggableEvent } from "react-draggable";
 import Icon from "react-native-vector-icons/Feather";
-import Knobs from "../../../../knobs";
-
-import { useSize } from "../../../../hooks";
-const Translate = () => {
+import Knobs from "../../../knobs";
+import KnobContainers from "../../../knobs/containers";
+import { useSize } from "../../../hooks";
+const Transform = () => {
   const ref: any = useRef(null);
   const { width, height } = useSize(ref);
 
@@ -74,9 +74,12 @@ const Translate = () => {
   return (
     <Animated.View
       style={{
-        height: "100%",
+        height: "50vh",
+        minHeight: 500,
+        maxHeight: 720,
         width: "100%",
         display: "flex",
+        flex: 1,
       }}
     >
       <View style={{ flex: 1 }} ref={ref}>
@@ -141,6 +144,28 @@ const Translate = () => {
         value={sliderRotateZ}
         onChange={handlerRotateZChange}
       />
+      <KnobContainers.DynamicSection
+        config={[
+          {
+            type: "TextField",
+            props: {
+              type: "number",
+              variant: "outlined",
+              label: "Duration",
+              margin: "dense",
+            },
+          },
+          {
+            type: "TextField",
+            props: {
+              type: "number",
+              variant: "outlined",
+              label: "Easing",
+              margin: "dense",
+            },
+          },
+        ]}
+      />
     </Animated.View>
   );
 };
@@ -165,4 +190,4 @@ const styles = StyleSheet.create({
     borderColor: "#000",
   },
 });
-export default Translate;
+export default Transform;
