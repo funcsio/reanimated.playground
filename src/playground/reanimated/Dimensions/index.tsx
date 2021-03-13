@@ -28,7 +28,7 @@ import { ResolveAnimationFunction } from "../../../utils/AnimationFunction.Resol
 import { useSize } from "../../../hooks";
 import { Card, Fab, Grid, IconButton, Button } from "@material-ui/core";
 import Editor from "@monaco-editor/react";
-import useAnimationConfigurer from "../../../hooks/useAnimationConfigurer";
+import AnimationConfigurer from "../../../containers/AnimationConfigurer";
 
 const MIN_BOX_DIMENSIONS = 100;
 
@@ -48,24 +48,23 @@ const Translate = () => {
     AnimationFunctionsEnum.withTiming
   );
 
-  const { AnimationConfigurerRenderer } = useAnimationConfigurer(
-    animationFunction
-  );
-  const animateValue = (value: any) => {
-    // return withSpring(value, {}, (isFinished) => {
-    //   setAnimationFinished(isFinished);
-    // });
-    const args: Array<any> = [
-      value,
-      { velocity: 30, clamp: [0, 200], deceleration: -2 },
-      (isFinished) => {
-        setAnimationFinished(isFinished);
-      },
-    ];
-    // withDelay
-    // return ResolveAnimationFunction(animationFunction).call(this, 400,withTiming(value));
-    return ResolveAnimationFunction(animationFunction).call(this, ...args);
-  };
+  const [animationConfig, setAnimationConfig] = useState({});
+  const [animateValue, setAnimateValue] = useState<any>();
+  // const animateValue = (value: any) => {
+  //   // return withSpring(value, {}, (isFinished) => {
+  //   //   setAnimationFinished(isFinished);
+  //   // });
+  //   const args: Array<any> = [
+  //     value,
+  //     animationConfig,
+  //     (isFinished) => {
+  //       setAnimationFinished(isFinished);
+  //     },
+  //   ];
+  //   // withDelay
+  //   // return ResolveAnimationFunction(animationFunction).call(this, 400,withTiming(value));
+  //   return ResolveAnimationFunction(animationFunction).call(this, ...args);
+  // };
   const AnimatedStyles = {
     animate: useAnimatedStyle(() => {
       return {
@@ -134,32 +133,8 @@ const Translate = () => {
               value={sliderHeight}
               onChange={handlerHeightChange}
             />
-            <Knobs.Select
-              label="Animation Function"
-              selectProps={{
-                fullWidth: true,
-                value: animationFunction,
-                onChange: (e) => {
-                  setAnimationFunction(
-                    e.target.value as AnimationFunctionsEnum
-                  );
-                },
-              }}
-              items={[
-                {
-                  value: AnimationFunctionsEnum.withTiming,
-                  name: "withTiming",
-                },
-                {
-                  value: AnimationFunctionsEnum.withSpring,
-                  name: "withSpring",
-                },
-                { value: AnimationFunctionsEnum.withDelay, name: "withDelay" },
-                { value: AnimationFunctionsEnum.withDecay, name: "withDecay" },
-              ]}
-            />
-            {/* <Knobs.AnimationConfigurer /> */}
-            <AnimationConfigurerRenderer />
+            {JSON.stringify(animationConfig, null, 2)}
+            <AnimationConfigurer setParentAnimateWithConfig={setAnimateValue} />
           </Grid>
           <Grid item>
             <Knobs.Button.IconButton
@@ -191,7 +166,7 @@ const Translate = () => {
                 cancelAnimation(height);
               }}
             >
-              <MUIIcons.Close />
+              <MUIIcons.Stop />
             </Knobs.Button.IconButton>
 
             <Knobs.Button.IconButton
@@ -223,9 +198,8 @@ const Translate = () => {
 
 const styles = StyleSheet.create({
   cont: {
-    height: "50vh",
+    minHeight: "50vh",
     width: "100%",
-    minHeight: 500,
   },
   box: {
     backgroundColor: "#001a72",

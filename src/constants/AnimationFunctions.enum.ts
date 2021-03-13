@@ -1,8 +1,18 @@
-enum AnimationFunction {
+enum AnimationFunctions {
   withTiming,
   withSpring,
   withDecay,
   withDelay,
+  withRepeat,
+}
+export enum AnimationFunctionsPrimary {
+  withTiming,
+  withSpring,
+  withDecay,
 }
 
-export default AnimationFunction;
+export enum AnimationFunctionsSecondary {
+  withDelay,
+  withRepeat,
+}
+export default AnimationFunctions;

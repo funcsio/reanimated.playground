@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useReducer } from "react";
+import { Easing } from "react-native-reanimated";
+import lodash from "lodash";
 import EAnimationFunctions from "../constants/AnimationFunctions.enum";
 import KnobsContainers from "../knobs/containers";
+import Knobs from "../knobs";
 
 // A cutom hook to configure and interact with various animation functions
 const useAnimationConfigurer = (AnimationFunction: EAnimationFunctions) => {
@@ -14,140 +16,7 @@ const useAnimationConfigurer = (AnimationFunction: EAnimationFunctions) => {
     setSelectedAnimationFunction(AnimationFunction);
   }, [AnimationFunction]);
 
-  const AnimationConfigurerRenderer = () => {
-    return (
-      <KnobsContainers.DynamicSection
-        config={UIConfig(selectedAnimationFunction)}
-      />
-    );
-  };
-
-  return {
-    AnimationConfigurerRenderer,
-  };
+  return {};
 };
-
-const UIConfig = (AnimationFunction: EAnimationFunctions) => {
-  switch (AnimationFunction) {
-    case EAnimationFunctions.withTiming:
-      return withTimingUIConfiguration;
-    case EAnimationFunctions.withSpring:
-      return withSpringUIConfiguration;
-    case EAnimationFunctions.withDecay:
-      return withDecayUIConfiguration;
-  }
-};
-
-const withTimingUIConfiguration = [
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Duration",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Easing",
-      margin: "dense",
-    },
-  },
-];
-
-const withSpringUIConfiguration = [
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Damping",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Mass",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Stiffness",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "OvershootClamping",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "RestDisplacementThreshold",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "RestSpeedThreshold",
-      placeholder: "restSpeedThreshold",
-      margin: "dense",
-    },
-  },
-];
-
-const withDecayUIConfiguration = [
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Velocity",
-      placeholder: "velocity",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Deceleration",
-      placeholder: "deceleration",
-      margin: "dense",
-    },
-  },
-  {
-    type: "TextField",
-    props: {
-      type: "number",
-      variant: "outlined",
-      label: "Clamp",
-      placeholder: "clamp",
-      margin: "dense",
-    },
-  },
-];
 
 export default useAnimationConfigurer;

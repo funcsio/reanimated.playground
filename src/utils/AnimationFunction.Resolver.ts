@@ -7,9 +7,14 @@ import {
   withTiming,
 } from "react-native-reanimated";
 
-import AnimationEnum from "../constants/AnimationFunctions.enum";
+import AnimationEnum, {
+  AnimationFunctionsPrimary,
+  AnimationFunctionsSecondary,
+} from "../constants/AnimationFunctions.enum";
 
-const ResolveAnimationFunction = (value: AnimationEnum): Function => {
+const ResolveAnimationFunction = (
+  value: AnimationEnum | AnimationFunctionsPrimary | AnimationFunctionsSecondary
+): Function => {
   switch (value) {
     case AnimationEnum.withSpring:
       return withSpring;
@@ -19,6 +24,8 @@ const ResolveAnimationFunction = (value: AnimationEnum): Function => {
       return withDecay;
     case AnimationEnum.withDelay:
       return withDelay;
+    case AnimationEnum.withRepeat:
+      return withRepeat;
     default:
       return withTiming;
   }
