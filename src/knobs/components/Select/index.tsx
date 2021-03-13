@@ -20,7 +20,7 @@ const KnobSelect: React.FunctionComponent<SelectCustomProps> = (
   props: SelectCustomProps
 ) => {
   return (
-    <>
+    <div style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
       <InputLabel>{props.label}</InputLabel>
       <Select {...props.selectProps}>
         {props.items &&
@@ -30,7 +30,7 @@ const KnobSelect: React.FunctionComponent<SelectCustomProps> = (
             </MenuItem>
           ))}
       </Select>
-    </>
+    </div>
   );
 };
 

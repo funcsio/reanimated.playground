@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { StyleSheet } from "react-native";
 import lodash from "lodash";
 import { Easing } from "react-native-reanimated";
 
@@ -10,7 +11,13 @@ import { ResolveAnimationFunction } from "../../utils/AnimationFunction.Resolver
 import KnobsComponents from "../../knobs/components";
 import KnobsContainers from "../../knobs/containers";
 import InitialAnimationConfig from "./DefaultConfig";
-import { FormControl } from "@material-ui/core";
+import stylesCSS from "./styles.module.scss";
+
+const styles = {
+  configurationItem: {
+    margin: "0.5rem 0.3rem",
+  },
+};
 interface IAnimationConfigurerRendererProps {
   setParentConfig: Function;
   setParentAnimationFunction: Function;
@@ -40,6 +47,8 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
     {
       type: "TextField",
       props: {
+        className: stylesCSS.configurationItem,
+        style: { ...styles.configurationItem },
         type: "number",
         variant: "outlined",
         label: "Duration",
@@ -60,6 +69,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Easing",
         margin: "dense",
@@ -72,6 +82,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Damping",
         margin: "dense",
@@ -91,6 +102,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Mass",
         margin: "dense",
@@ -110,6 +122,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Stiffness",
         margin: "dense",
@@ -127,9 +140,9 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
     },
     {
       type: "Switch",
-
       props: {
         label: "Overshoot Clamping",
+
         checked:
           animationConfig[EAnimationFunctions.withSpring].overshootClamping,
         onChange: (e) => {
@@ -148,6 +161,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       props: {
         type: "number",
         variant: "outlined",
+        style: { ...styles.configurationItem },
         label: "RestDisplacementThreshold",
         margin: "dense",
         value:
@@ -168,6 +182,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "RestSpeedThreshold",
         placeholder: "restSpeedThreshold",
@@ -192,6 +207,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Velocity",
         placeholder: "velocity",
@@ -212,6 +228,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Deceleration",
         placeholder: "deceleration",
@@ -232,6 +249,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         component: "span",
+        style: { ...styles.configurationItem },
         type: "number",
         variant: "outlined",
         label: "Clamp (Start)",
@@ -255,6 +273,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         component: "span",
+        style: { ...styles.configurationItem },
         type: "number",
         variant: "outlined",
         label: "Clamp (Emd)",
@@ -281,6 +300,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Delay (ms)",
         margin: "dense",
@@ -303,6 +323,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "TextField",
       props: {
         type: "number",
+        style: { ...styles.configurationItem },
         variant: "outlined",
         label: "Number of repetations",
         margin: "dense",
@@ -322,6 +343,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       type: "Switch",
       props: {
         label: "Reverse",
+
         checked: animationConfig[EAnimationFunctions.withRepeat].reverse,
         onChange: (e) => {
           setAnimationConfig((prevState) => {
@@ -351,10 +373,11 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
   };
 
   return (
-    <>
+    <div className={stylesCSS.configurationCont}>
       <KnobsComponents.Select
         label="Animation Function"
         selectProps={{
+          
           fullWidth: true,
           value: animationFunction,
           onChange: (e) => {
@@ -389,7 +412,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
       />
 
       <KnobsContainers.DynamicSection config={UIConfig(animationFunction)} />
-    </>
+    </div>
   );
 };
 

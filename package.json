@@ -73,6 +73,7 @@
     "babel-loader": "8.1.0",
     "babel-plugin-react-native-web": "^0.15.0",
     "customize-cra": "^1.0.0",
+    "node-sass": "^5.0.0",
     "react-app-rewired": "^2.1.8"
   }
 }

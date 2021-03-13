@@ -9,7 +9,7 @@ import EAnimationFunctions, {
 import { ResolveAnimationFunction } from "../../utils/AnimationFunction.Resolver";
 import KnobsComponents from "../../knobs/components";
 import KnobsContainers from "../../knobs/containers";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import AnimationConfigurerRenderer from "./AnimationConfigurer";
 import InitialAnimationConfig from "./DefaultConfig";
 interface IAnimationConfigurerProps {
@@ -76,21 +76,31 @@ const AnimationConfigurer: React.FunctionComponent<IAnimationConfigurerProps> = 
     setParentAnimateWithConfig,
   ]);
   return (
-    <>
-      <AnimationConfigurerRenderer
-        setParentConfig={setAnimationConfig}
-        setParentAnimationFunction={setAnimationFunction}
-      />
-      {Object.values(EAnimationFunctionsSecondary).includes(
-        EAnimationFunctions[animationFunction]
-      ) && (
+    <Grid
+      container
+      spacing={5}
+      justify="space-evenly"
+      alignContent="center"
+      alignItems="stretch"
+    >
+      <Grid item md>
         <AnimationConfigurerRenderer
-          isSecondary={true}
-          setParentConfig={setAnimationConfigChild}
-          setParentAnimationFunction={setAnimationFunctionChild}
+          setParentConfig={setAnimationConfig}
+          setParentAnimationFunction={setAnimationFunction}
         />
-      )}
-    </>
+      </Grid>
+      <Grid item md>
+        {Object.values(EAnimationFunctionsSecondary).includes(
+          EAnimationFunctions[animationFunction]
+        ) && (
+          <AnimationConfigurerRenderer
+            isSecondary={true}
+            setParentConfig={setAnimationConfigChild}
+            setParentAnimationFunction={setAnimationFunctionChild}
+          />
+        )}
+      </Grid>
+    </Grid>
   );
 };
 export default AnimationConfigurer;

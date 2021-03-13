@@ -23,7 +23,7 @@ const IOSSwitch = withStyles((theme: Theme) =>
       width: 42,
       height: 26,
       padding: 0,
-      margin: theme.spacing(1),
+      margin: theme.spacing(2),
     },
     switchBase: {
       padding: 1,

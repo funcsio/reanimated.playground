@@ -1,36 +1,20 @@
-import React, {
-  ChangeEvent,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useState } from "react";
 import * as MUIIcons from "@material-ui/icons";
 
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withTiming,
-  withSpring,
-  withDelay,
-  withRepeat,
-  useAnimatedGestureHandler,
-  withDecay,
-  Easing,
   cancelAnimation,
 } from "react-native-reanimated";
-import Draggable, { DraggableEvent } from "react-draggable";
-import Icon from "react-native-vector-icons/Feather";
 import Knobs from "../../../knobs";
-import AnimationFunctionsEnum from "../../../constants/AnimationFunctions.enum";
-import { ResolveAnimationFunction } from "../../../utils/AnimationFunction.Resolver";
 import { useSize } from "../../../hooks";
-import { Card, Fab, Grid, IconButton, Button } from "@material-ui/core";
-import Editor from "@monaco-editor/react";
+import { Card, Grid, FormLabel } from "@material-ui/core";
 import AnimationConfigurer from "../../../containers/AnimationConfigurer";
+import stylesCSS from "./styles.module.scss";
+import Editor from "@monaco-editor/react";
 
-const MIN_BOX_DIMENSIONS = 100;
+const MIN_BOX_DIMENSIONS = 75;
 
 const Translate = () => {
   const ref: any = React.createRef();
@@ -46,19 +30,6 @@ const Translate = () => {
 
   const [animateValue, setAnimateValue] = useState<any>();
 
-  // const animateValue = (value: any) => {
-  //   // return withSpring(value, {}, (isFinished) => {
-  //   //   setAnimationFinished(isFinished);
-  //   // });
-  //   const args: Array<any> = [
-  //     value,
-  //     animationConfig,
-  //     ,
-  //   ];
-  //   // withDelay
-  //   // return ResolveAnimationFunction(animationFunction).call(this, 400,withTiming(value));
-  //   return ResolveAnimationFunction(animationFunction).call(this, ...args);
-  // };
   const AnimatedStyles = {
     animate: useAnimatedStyle(() => {
       return {
@@ -91,6 +62,7 @@ const Translate = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            minHeight: "50vh",
           }}
           ref={ref}
         >
@@ -113,17 +85,24 @@ const Translate = () => {
             </>
           )}
         </View>
-        <Grid container justify="center" alignItems="stretch">
+        <Grid
+          container
+          justify="center"
+          alignItems="stretch"
+          className={stylesCSS.configurationCont}
+        >
           <Grid item xs>
+            <FormLabel>Width</FormLabel>
             <Knobs.Slider
               min={MIN_BOX_DIMENSIONS}
-              max={Dim_Width}
+              max={Dim_Width * 0.9}
               value={sliderWidth}
               onChange={handlerWidthChange}
             />
+            <FormLabel>Height</FormLabel>
             <Knobs.Slider
               min={MIN_BOX_DIMENSIONS}
-              max={Dim_Height}
+              max={Dim_Height * 0.9}
               value={sliderHeight}
               onChange={handlerHeightChange}
             />
@@ -143,12 +122,14 @@ const Translate = () => {
                 setAnimationFinished(true);
                 setSliderWidth(
                   MIN_BOX_DIMENSIONS +
-                    Math.round(Math.random() * (Dim_Width - MIN_BOX_DIMENSIONS))
+                    Math.round(
+                      Math.random() * (0.9 * Dim_Width - MIN_BOX_DIMENSIONS)
+                    )
                 );
                 setSliderHeight(
                   MIN_BOX_DIMENSIONS +
                     Math.round(
-                      Math.random() * (Dim_Height - MIN_BOX_DIMENSIONS)
+                      Math.random() * (0.9 * Dim_Height - MIN_BOX_DIMENSIONS)
                     )
                 );
               }}
@@ -182,22 +163,12 @@ const Translate = () => {
           </Grid>
         </Grid>
       </Animated.View>
-      {/* <Editor
-        height="20vh"
-        options={{
-          lineNumbers: "off",
-          readOnly: true,
-        }}
-        defaultLanguage="javascript"
-        defaultValue="Hello"
-      /> */}
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
   cont: {
-    minHeight: "50vh",
     width: "100%",
   },
   box: {
