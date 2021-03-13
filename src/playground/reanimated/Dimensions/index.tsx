@@ -44,12 +44,8 @@ const Translate = () => {
   const width = useSharedValue(sliderWidth);
   const height = useSharedValue(sliderHeight);
 
-  const [animationFunction, setAnimationFunction] = useState(
-    AnimationFunctionsEnum.withTiming
-  );
-
-  const [animationConfig, setAnimationConfig] = useState({});
   const [animateValue, setAnimateValue] = useState<any>();
+
   // const animateValue = (value: any) => {
   //   // return withSpring(value, {}, (isFinished) => {
   //   //   setAnimationFinished(isFinished);
@@ -57,9 +53,7 @@ const Translate = () => {
   //   const args: Array<any> = [
   //     value,
   //     animationConfig,
-  //     (isFinished) => {
-  //       setAnimationFinished(isFinished);
-  //     },
+  //     ,
   //   ];
   //   // withDelay
   //   // return ResolveAnimationFunction(animationFunction).call(this, 400,withTiming(value));
@@ -133,8 +127,13 @@ const Translate = () => {
               value={sliderHeight}
               onChange={handlerHeightChange}
             />
-            {JSON.stringify(animationConfig, null, 2)}
-            <AnimationConfigurer setParentAnimateWithConfig={setAnimateValue} />
+
+            <AnimationConfigurer
+              setParentAnimateWithConfig={setAnimateValue}
+              onAnimationFinished={(isFinished) => {
+                setAnimationFinished(isFinished);
+              }}
+            />
           </Grid>
           <Grid item>
             <Knobs.Button.IconButton

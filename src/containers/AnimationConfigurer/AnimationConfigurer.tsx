@@ -9,36 +9,14 @@ import EAnimationFunctions, {
 import { ResolveAnimationFunction } from "../../utils/AnimationFunction.Resolver";
 import KnobsComponents from "../../knobs/components";
 import KnobsContainers from "../../knobs/containers";
-
+import InitialAnimationConfig from "./DefaultConfig";
+import { FormControl } from "@material-ui/core";
 interface IAnimationConfigurerRendererProps {
   setParentConfig: Function;
   setParentAnimationFunction: Function;
   isSecondary?: Boolean;
 }
 
-const InitialAnimationConfig = {
-  [EAnimationFunctions.withTiming]: {
-    duration: 300,
-    easing: Easing.ease,
-  },
-  [EAnimationFunctions.withSpring]: {
-    damping: 10,
-    mass: 1,
-    stiffness: 100,
-    overshootClamping: false,
-    restDisplacementThreshold: 0.001,
-    restSpeedThreshold: 0.001,
-  },
-
-  [EAnimationFunctions.withDecay]: {
-    velocity: 0,
-    deceleration: 0.998,
-    clamp: [],
-  },
-  [EAnimationFunctions.withDelay]: {
-    delayMS: 1000,
-  },
-};
 const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerRendererProps> = (
   props
 ) => {
@@ -320,6 +298,43 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
     },
   ];
 
+  const withRepeatUIConfiguration = [
+    {
+      type: "TextField",
+      props: {
+        type: "number",
+        variant: "outlined",
+        label: "Number of repetations",
+        margin: "dense",
+        value: animationConfig[EAnimationFunctions.withRepeat].numberOfReps,
+        onChange: (e) => {
+          setAnimationConfig((prevState) => {
+            return handleConfigPropertyChange(prevState, {
+              [EAnimationFunctions.withRepeat]: {
+                numberOfReps: parseInt(e.target.value) | 0,
+              },
+            });
+          });
+        },
+      },
+    },
+    {
+      type: "Switch",
+      props: {
+        label: "Reverse",
+        checked: animationConfig[EAnimationFunctions.withRepeat].reverse,
+        onChange: (e) => {
+          setAnimationConfig((prevState) => {
+            return handleConfigPropertyChange(prevState, {
+              [EAnimationFunctions.withRepeat]: {
+                reverse: e.target.checked,
+              },
+            });
+          });
+        },
+      },
+    },
+  ];
   const UIConfig = (AnimationFunction: EAnimationFunctions) => {
     switch (AnimationFunction) {
       case EAnimationFunctions.withTiming:
@@ -330,6 +345,8 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
         return withDecayUIConfiguration;
       case EAnimationFunctions.withDelay:
         return withDelayUIConfiguration;
+      case EAnimationFunctions.withRepeat:
+        return withRepeatUIConfiguration;
     }
   };
 
@@ -370,6 +387,7 @@ const AnimationConfigurerRenderer: React.FunctionComponent<IAnimationConfigurerR
           return items;
         })()}
       />
+
       <KnobsContainers.DynamicSection config={UIConfig(animationFunction)} />
     </>
   );
