@@ -8,18 +8,23 @@ import {
   Redirect,
 } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Dimensions, Tranform } from "../../playground/reanimated";
+import { Dimensions, Tranform, Colors } from "../../playground/reanimated";
 
 export const Reanimated_Components_Index = [
+  {
+    name: "Dimensions",
+    component: Dimensions,
+    path: "dimensions",
+  },
   {
     name: "Transform",
     component: Tranform,
     path: "transform",
   },
   {
-    name: "Dimensions",
-    component: Dimensions,
-    path: "dimensions",
+    name: "Colors",
+    component: Colors,
+    path: "colors",
   },
 ];
 

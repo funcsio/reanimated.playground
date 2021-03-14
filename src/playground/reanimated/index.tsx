@@ -1,4 +1,4 @@
 import Dimensions from "./Dimensions";
 import Tranform from "./Transform";
-
-export { Dimensions, Tranform };
+import Colors from "./Colors";
+export { Dimensions, Tranform, Colors };
