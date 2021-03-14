@@ -66,16 +66,13 @@ const Transform = () => {
   return (
     <Animated.View
       style={{
-        height: "50vh",
-        minHeight: 500,
-        maxHeight: 720,
         width: "100%",
         display: "flex",
         flex: 1,
       }}
     >
       <View
-        style={{ flex: 1, minHeight: "50vh", marginBottom: "5%" }}
+        style={{ flex: 1, height: "40vh", minHeight: 400, marginBottom: "5%" }}
         ref={ref}
       >
         <Animated.View style={[AnimatedStyles.animate, styles.box]}>

@@ -20,6 +20,7 @@
     "jetifier": "^1.6.6",
     "lodash": "^4.17.21",
     "mdx.macro": "^0.2.9",
+    "moti": "^0.6.4",
     "prism-react-renderer": "^1.2.0",
     "react": "^17.0.1",
     "react-color": "^2.19.3",
@@ -34,6 +35,7 @@
     "react-native-web": "^0.15.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-view": "^2.3.7",
     "stats.js": "^0.17.0",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"

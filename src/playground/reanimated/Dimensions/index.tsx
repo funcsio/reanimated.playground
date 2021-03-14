@@ -63,14 +63,13 @@ const Translate = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            minHeight: "50vh",
+            height: "50vh",
+            minHeight: 400,
           }}
           ref={ref}
         >
-          <Animated.View
-            style={[styles.box, AnimatedStyles.animate]}
-          >
-              <Icon name="maximize-2" size={30} color="#fafafa" />
+          <Animated.View style={[styles.box, AnimatedStyles.animate]}>
+            <Icon name="maximize-2" size={30} color="#fafafa" />
           </Animated.View>
 
           {animationFinished && (

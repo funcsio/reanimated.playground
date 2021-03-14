@@ -15,12 +15,15 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Button, Container } from "@material-ui/core";
+import { Button, Container, Divider } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import Navigation from "../Navigation";
 import { Link } from "react-router-dom";
-import { Reanimated_Components_Index } from "../Navigation";
+import {
+  Reanimated_Components_Index,
+  Community_Components_Index,
+} from "../Navigation";
 
 const drawerWidth = 200;
 
@@ -87,6 +90,20 @@ function ResponsiveDrawer(props: any) {
           <Link
             key={elm.name}
             to={`/reanimated/${elm.path}`}
+            onClick={() => handleDrawerToggle(false)}
+          >
+            <ListItem button key={elm.name}>
+              <ListItemText primary={elm.name} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {Community_Components_Index.map((elm, index) => (
+          <Link
+            key={elm.name}
+            to={`/community/${elm.path}`}
             onClick={() => handleDrawerToggle(false)}
           >
             <ListItem button key={elm.name}>

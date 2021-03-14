@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Dimensions, Tranform, Colors } from "../../playground/reanimated";
-
+import { Moti } from "../../playground/community";
 export const Reanimated_Components_Index = [
   {
     name: "Dimensions",
@@ -28,6 +28,13 @@ export const Reanimated_Components_Index = [
   },
 ];
 
+export const Community_Components_Index = [
+  {
+    name: "Moti",
+    component: Moti,
+    path: "moti",
+  },
+];
 export default function Navigation() {
   return (
     <React.Fragment>
@@ -36,6 +43,18 @@ export default function Navigation() {
           {Reanimated_Components_Index.map((elm, idx) => {
             return (
               <Route key={idx} path={`/reanimated/${elm.path}`} exact>
+                <Helmet>
+                  <title>{elm.name} | Playground 🚀</title>
+                </Helmet>
+                <elm.component />
+              </Route>
+            );
+          })}
+        </Route>
+        <Route path="/community">
+          {Community_Components_Index.map((elm, idx) => {
+            return (
+              <Route key={idx} path={`/community/${elm.path}`} exact>
                 <Helmet>
                   <title>{elm.name} | Playground 🚀</title>
                 </Helmet>

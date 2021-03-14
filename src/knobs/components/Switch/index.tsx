@@ -14,7 +14,7 @@ interface Styles extends Partial<Record<SwitchClassKey, string>> {
 
 interface Props extends SwitchProps {
   classes: Styles;
-  label: string;
+  label?: string;
 }
 
 const IOSSwitch = withStyles((theme: Theme) =>
@@ -56,24 +56,40 @@ const IOSSwitch = withStyles((theme: Theme) =>
     focusVisible: {},
   })
 )(({ classes, ...props }: Props) => {
-  return (
-    <FormControlLabel
-      label={props.label}
-      control={
-        <Switch
-          focusVisibleClassName={classes.focusVisible}
-          disableRipple
-          classes={{
-            root: classes.root,
-            switchBase: classes.switchBase,
-            thumb: classes.thumb,
-            track: classes.track,
-            checked: classes.checked,
-          }}
-          {...props}
-        />
-      }
-    />
-  );
+  if (props.label)
+    return (
+      <FormControlLabel
+        label={props.label ? props.label : null}
+        control={
+          <Switch
+            focusVisibleClassName={classes.focusVisible}
+            disableRipple
+            classes={{
+              root: classes.root,
+              switchBase: classes.switchBase,
+              thumb: classes.thumb,
+              track: classes.track,
+              checked: classes.checked,
+            }}
+            {...props}
+          />
+        }
+      />
+    );
+  else
+    return (
+      <Switch
+        focusVisibleClassName={classes.focusVisible}
+        disableRipple
+        classes={{
+          root: classes.root,
+          switchBase: classes.switchBase,
+          thumb: classes.thumb,
+          track: classes.track,
+          checked: classes.checked,
+        }}
+        {...props}
+      />
+    );
 });
 export default IOSSwitch;

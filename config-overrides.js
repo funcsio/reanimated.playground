@@ -23,6 +23,8 @@ const newConf = override(
     path.resolve(__dirname, "node_modules/react-native-gesture-handler"),
     path.resolve(__dirname, "node_modules/react-native-reanimated"),
     path.resolve(__dirname, "node_modules/react-native-vector-icons"),
+    path.resolve(__dirname, "node_modules/@motify"),
+    path.resolve(__dirname, "node_modules/moti"),
     path.resolve(__dirname, "src"),
   ]),
   addWebpackAlias({
