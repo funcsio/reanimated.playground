@@ -1,26 +1,22 @@
-import React, {
-  ChangeEvent,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import { StyleSheet, Button, View, Text } from "react-native";
+import React, { useRef, useState } from "react";
+import { StyleSheet, Button, View } from "react-native";
+import * as MUIIcons from "@material-ui/icons";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withTiming,
   withSpring,
-  useAnimatedGestureHandler,
+  cancelAnimation,
 } from "react-native-reanimated";
-import Draggable, { DraggableEvent } from "react-draggable";
 import Icon from "react-native-vector-icons/Feather";
 import Knobs from "../../../knobs";
 import KnobContainers from "../../../knobs/containers";
 import { useSize } from "../../../hooks";
+import AnimationConfigurer from "../../../containers/AnimationConfigurer";
+import { FormLabel, Grid } from "@material-ui/core";
 const Transform = () => {
   const ref: any = useRef(null);
-  const { width, height } = useSize(ref);
+
+  const { width: Dim_Width, height: Dim_Height } = useSize(ref);
 
   const [animationFinished, setAnimationFinished] = useState(true);
 
@@ -28,9 +24,11 @@ const Transform = () => {
   const [sliderY, setSliderY] = useState<number>(0);
   const [sliderRotateZ, setSliderRotateZ] = useState<number>(0);
 
-  const X = useSharedValue(0);
-  const Y = useSharedValue(0);
-  const RotateZ = useSharedValue(0);
+  const X = useSharedValue(sliderX);
+  const Y = useSharedValue(sliderY);
+  const RotateZ = useSharedValue(sliderRotateZ);
+
+  const [animateValue, setAnimateValue] = useState<any>();
 
   const AnimatedStyles = {
     animate: useAnimatedStyle(() => {
@@ -65,12 +63,6 @@ const Transform = () => {
     setSliderRotateZ(newValue as number);
   };
 
-  const animateValue = (value: any) => {
-    return withSpring(value, {}, (isFinished) => {
-      setAnimationFinished(isFinished);
-    });
-  };
-
   return (
     <Animated.View
       style={{
@@ -82,7 +74,10 @@ const Transform = () => {
         flex: 1,
       }}
     >
-      <View style={{ flex: 1 }} ref={ref}>
+      <View
+        style={{ flex: 1, minHeight: "50vh", marginBottom: "5%" }}
+        ref={ref}
+      >
         <Animated.View style={[AnimatedStyles.animate, styles.box]}>
           <Icon name="move" size={30} color="#fafafa" />
         </Animated.View>
@@ -105,66 +100,84 @@ const Transform = () => {
           </>
         )}
       </View>
-      <Button
-        title="Animate"
-        onPress={() => {
-          setAnimationFinished(false);
-          X.value = animateValue(sliderX);
-          Y.value = animateValue(sliderY);
-          RotateZ.value = animateValue(sliderRotateZ);
-        }}
-      />
-      <Button
-        title="Random"
-        onPress={() => {
-          setAnimationFinished(true);
-          setSliderX(Math.round(Math.random() * (width - 100)));
-          setSliderY(Math.round(Math.random() * (height - 100)));
-          setSliderRotateZ(Math.round(Math.random() * 360));
-        }}
-      />
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        alignContent="center"
+        spacing={1}
+      >
+        <Grid item xs={12} style={{ textAlign: "center" }} md>
+          <Knobs.Button.IconButton
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setAnimationFinished(false);
+              X.value = animateValue(sliderX);
+              Y.value = animateValue(sliderY);
+              RotateZ.value = animateValue(sliderRotateZ);
+            }}
+          >
+            <MUIIcons.PlayArrowRounded fontSize="large" />
+          </Knobs.Button.IconButton>
+          <Knobs.Button.IconButton
+            variant="outlined"
+            aria-label="Cancel Animation"
+            color="primary"
+            onClick={() => {
+              setAnimationFinished(true);
+              cancelAnimation(X);
+              cancelAnimation(Y);
+              cancelAnimation(RotateZ);
+            }}
+          >
+            <MUIIcons.Stop />
+          </Knobs.Button.IconButton>
 
-      <Knobs.Slider
-        min={0}
-        max={width - 100}
-        value={sliderX}
-        onChange={handlerXChange}
-        aria-labelledby="continuous-slider"
-      />
-      <Knobs.Slider
-        min={0}
-        max={height - 100}
-        value={sliderY}
-        onChange={handlerYChange}
-        aria-labelledby="continuous-slider"
-      />
-      <Knobs.Slider
-        min={0}
-        max={360}
-        value={sliderRotateZ}
-        onChange={handlerRotateZChange}
-      />
-      <KnobContainers.DynamicSection
-        config={[
-          {
-            type: "TextField",
-            props: {
-              type: "number",
-              variant: "outlined",
-              label: "Duration",
-              margin: "dense",
-            },
-          },
-          {
-            type: "TextField",
-            props: {
-              type: "number",
-              variant: "outlined",
-              label: "Easing",
-              margin: "dense",
-            },
-          },
-        ]}
+          <Knobs.Button.IconButton
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              setAnimationFinished(true);
+              setSliderX(Math.round(Math.random() * (Dim_Width - 100)));
+              setSliderY(Math.round(Math.random() * (Dim_Height - 100)));
+              setSliderRotateZ(Math.round(Math.random() * 360));
+            }}
+          >
+            <MUIIcons.Shuffle />
+          </Knobs.Button.IconButton>
+        </Grid>
+        <Grid item xs={12} md>
+          <FormLabel>X</FormLabel>
+          <Knobs.Slider
+            min={0}
+            max={Dim_Width - 100}
+            value={sliderX}
+            onChange={handlerXChange}
+            aria-labelledby="continuous-slider"
+          />
+          <FormLabel>Y</FormLabel>
+          <Knobs.Slider
+            min={0}
+            max={Dim_Height - 100}
+            value={sliderY}
+            onChange={handlerYChange}
+            aria-labelledby="continuous-slider"
+          />
+          <FormLabel>Rotate</FormLabel>
+          <Knobs.Slider
+            min={0}
+            max={360}
+            value={sliderRotateZ}
+            onChange={handlerRotateZChange}
+          />
+        </Grid>
+      </Grid>
+      <AnimationConfigurer
+        setParentAnimateWithConfig={setAnimateValue}
+        onAnimationFinished={(isFinished) => {
+          setAnimationFinished(isFinished);
+        }}
       />
     </Animated.View>
   );

@@ -31,7 +31,7 @@ const App = () => {
       </View>
       <div
         id="stats-for-nerds"
-        style={{ position: "absolute", bottom: 0, right: 0 }}
+        style={{ position: "fixed", bottom: 0, right: 0 }}
       ></div>
     </>
   );

@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedStyle,
   cancelAnimation,
 } from "react-native-reanimated";
+import Icon from "react-native-vector-icons/Feather";
 import Knobs from "../../../knobs";
 import { useSize } from "../../../hooks";
 import { Card, Grid, FormLabel } from "@material-ui/core";
@@ -68,7 +69,9 @@ const Translate = () => {
         >
           <Animated.View
             style={[styles.box, AnimatedStyles.animate]}
-          ></Animated.View>
+          >
+              <Icon name="maximize-2" size={30} color="#fafafa" />
+          </Animated.View>
 
           {animationFinished && (
             <>
@@ -88,33 +91,36 @@ const Translate = () => {
         <Grid
           container
           justify="center"
-          alignItems="stretch"
-          className={stylesCSS.configurationCont}
+          alignItems="center"
+          alignContent="center"
+          spacing={1}
         >
-          <Grid item xs>
-            <FormLabel>Width</FormLabel>
-            <Knobs.Slider
-              min={MIN_BOX_DIMENSIONS}
-              max={Dim_Width * 0.9}
-              value={sliderWidth}
-              onChange={handlerWidthChange}
-            />
-            <FormLabel>Height</FormLabel>
-            <Knobs.Slider
-              min={MIN_BOX_DIMENSIONS}
-              max={Dim_Height * 0.9}
-              value={sliderHeight}
-              onChange={handlerHeightChange}
-            />
-
-            <AnimationConfigurer
-              setParentAnimateWithConfig={setAnimateValue}
-              onAnimationFinished={(isFinished) => {
-                setAnimationFinished(isFinished);
+          <Grid item xs={12} style={{ textAlign: "center" }} md>
+            <Knobs.Button.IconButton
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setAnimationFinished(false);
+                width.value = animateValue(sliderWidth);
+                height.value = animateValue(sliderHeight);
               }}
-            />
-          </Grid>
-          <Grid item>
+            >
+              <MUIIcons.PlayArrowRounded fontSize="large" />
+            </Knobs.Button.IconButton>
+
+            <Knobs.Button.IconButton
+              variant="outlined"
+              aria-label="Cancel Animation"
+              color="primary"
+              onClick={() => {
+                setAnimationFinished(true);
+                cancelAnimation(width);
+                cancelAnimation(height);
+              }}
+            >
+              <MUIIcons.Stop />
+            </Knobs.Button.IconButton>
+
             <Knobs.Button.IconButton
               variant="outlined"
               color="primary"
@@ -136,32 +142,31 @@ const Translate = () => {
             >
               <MUIIcons.Shuffle />
             </Knobs.Button.IconButton>
+          </Grid>
 
-            <Knobs.Button.IconButton
-              variant="outlined"
-              aria-label="Cancel Animation"
-              color="primary"
-              onClick={() => {
-                cancelAnimation(width);
-                cancelAnimation(height);
-              }}
-            >
-              <MUIIcons.Stop />
-            </Knobs.Button.IconButton>
-
-            <Knobs.Button.IconButton
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                setAnimationFinished(false);
-                width.value = animateValue(sliderWidth);
-                height.value = animateValue(sliderHeight);
-              }}
-            >
-              <MUIIcons.PlayArrowRounded fontSize="large" />
-            </Knobs.Button.IconButton>
+          <Grid item xs>
+            <FormLabel>Width</FormLabel>
+            <Knobs.Slider
+              min={MIN_BOX_DIMENSIONS}
+              max={Dim_Width * 0.9}
+              value={sliderWidth}
+              onChange={handlerWidthChange}
+            />
+            <FormLabel>Height</FormLabel>
+            <Knobs.Slider
+              min={MIN_BOX_DIMENSIONS}
+              max={Dim_Height * 0.9}
+              value={sliderHeight}
+              onChange={handlerHeightChange}
+            />
           </Grid>
         </Grid>
+        <AnimationConfigurer
+          setParentAnimateWithConfig={setAnimateValue}
+          onAnimationFinished={(isFinished) => {
+            setAnimationFinished(isFinished);
+          }}
+        />
       </Animated.View>
     </Card>
   );
