@@ -1,17 +1,12 @@
 import React from "react";
-
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Redirect,
 } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import HomePage from "../../pages/Home";
 import { Dimensions, Tranform, Colors } from "../../playground/reanimated";
 import { Moti } from "../../playground/community";
-import Footer from "../Footer";
 
 export const Reanimated_Components_Index = [
   {

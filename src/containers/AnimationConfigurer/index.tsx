@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import lodash from "lodash";
-import { Easing, withTiming } from "react-native-reanimated";
-
 import EAnimationFunctions, {
   AnimationFunctionsSecondary as EAnimationFunctionsSecondary,
   AnimationFunctionsPrimary as EAnimationFunctionsPrimary,
 } from "../../constants/AnimationFunctions.enum";
 import { ResolveAnimationFunction } from "../../utils/AnimationFunction.Resolver";
-import KnobsComponents from "../../knobs/components";
-import KnobsContainers from "../../knobs/containers";
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import AnimationConfigurerRenderer from "./AnimationConfigurer";
 import InitialAnimationConfig from "./DefaultConfig";
 interface IAnimationConfigurerProps {

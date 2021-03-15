@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
 import lodash from "lodash";
-import { Easing } from "react-native-reanimated";
 
-import EAnimationFunctions, {
-  AnimationFunctionsSecondary as EAnimationFunctionsSecondary,
-  AnimationFunctionsPrimary as EAnimationFunctionsPrimary,
-} from "../../constants/AnimationFunctions.enum";
-import { ResolveAnimationFunction } from "../../utils/AnimationFunction.Resolver";
+import EAnimationFunctions from "../../constants/AnimationFunctions.enum";
 import KnobsComponents from "../../knobs/components";
 import KnobsContainers from "../../knobs/containers";
 import InitialAnimationConfig from "./DefaultConfig";

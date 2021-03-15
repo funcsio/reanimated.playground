@@ -15,7 +15,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Button, Container, Divider } from "@material-ui/core";
+import { Container, Divider } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Logo from "../../assets/logo-split.svg";
 import Navigation from "../Navigation";
@@ -199,7 +199,7 @@ function ResponsiveDrawer(props: any) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div style={{ maxWidth: "100vw" }}>
-          <Container style={{ minHeight: "80vh" }} maxWidth="lg">
+          <Container style={{ minHeight: "60vh" }} maxWidth="lg">
             <Navigation />
           </Container>
           <Footer />

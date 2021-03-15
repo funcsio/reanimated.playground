@@ -1,15 +1,13 @@
 import React, { useRef, useState } from "react";
-import { StyleSheet, Button, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as MUIIcons from "@material-ui/icons";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withSpring,
   cancelAnimation,
 } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/Feather";
 import Knobs from "../../../knobs";
-import KnobContainers from "../../../knobs/containers";
 import { useSize } from "../../../hooks";
 import AnimationConfigurer from "../../../containers/AnimationConfigurer";
 import { FormLabel, Grid } from "@material-ui/core";

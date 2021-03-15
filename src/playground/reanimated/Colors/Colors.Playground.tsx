@@ -1,19 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Button, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
 import * as MUIIcons from "@material-ui/icons";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withSpring,
   cancelAnimation,
 } from "react-native-reanimated";
-import Icon from "react-native-vector-icons/Feather";
 import Knobs from "../../../knobs";
-import KnobContainers from "../../../knobs/containers";
 import ColorPicker from "../../../components/ColorPicker";
-import { useSize } from "../../../hooks";
 import AnimationConfigurer from "../../../containers/AnimationConfigurer";
-import { Divider, FormLabel, Grid } from "@material-ui/core";
+import { FormLabel, Grid } from "@material-ui/core";
 
 const RGBObjectToString = (colorObject) => {
   const { r, g, b, a } = colorObject;
@@ -30,22 +26,12 @@ const RandomRGBA = () => {
   };
 };
 const Colors = () => {
-  const ref: any = useRef(null);
-
-  const { width: Dim_Width, height: Dim_Height } = useSize(ref);
-
   const [animationFinished, setAnimationFinished] = useState(true);
   const [colorPicker, setColorPicker] = useState({
     c1: { r: 6, g: 26, b: 114, a: 1 },
     c2: { r: 0, g: 255, b: 255, a: 1 },
   });
-  const [sliderX, setSliderX] = useState<number>(0);
-  const [sliderY, setSliderY] = useState<number>(0);
-  const [sliderRotateZ, setSliderRotateZ] = useState<number>(0);
 
-  const X = useSharedValue(sliderX);
-  const Y = useSharedValue(sliderY);
-  const RotateZ = useSharedValue(sliderRotateZ);
   const Color = useSharedValue(RGBObjectToString(colorPicker.c1));
   const [animateValue, setAnimateValue] = useState<any>();
 
@@ -84,7 +70,6 @@ const Colors = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
-        ref={ref}
       >
         <Animated.View style={[AnimatedStyles.animate, styles.box]}>
           <MUIIcons.PaletteOutlined
