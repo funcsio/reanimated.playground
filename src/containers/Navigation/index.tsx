@@ -49,7 +49,7 @@ export default function Navigation() {
             return (
               <Route key={idx} path={`/reanimated/${elm.path}`} exact>
                 <Helmet>
-                  <title>{elm.name} | Playground 🚀</title>
+                  <title>{elm.name} | Reanimated Playground</title>
                 </Helmet>
                 <elm.component />
               </Route>
@@ -61,7 +61,7 @@ export default function Navigation() {
             return (
               <Route key={idx} path={`/community/${elm.path}`} exact>
                 <Helmet>
-                  <title>{elm.name} | Playground 🚀</title>
+                  <title>{elm.name} | Community Playground</title>
                 </Helmet>
                 <elm.component />
               </Route>
@@ -69,7 +69,6 @@ export default function Navigation() {
           })}
         </Route>
       </Switch>
-      
     </React.Fragment>
   );
 }

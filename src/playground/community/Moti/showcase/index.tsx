@@ -1,7 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { Card, makeStyles, Typography } from "@material-ui/core";
-
 import HelloWorld from "./HelloWorld";
 import AnimatePresence from "./AnimatePresence";
 import AnimateHeight from "./AnimateHeight";
@@ -57,14 +55,6 @@ const ShowCase = () => {
         </Typography>
         <Variants />
       </Card>
-      <div>
-        <Typography variant="h6">
-          {"Source: "}
-          <a href="https://moti.fyi" target="_blank">
-            moti.fyi
-          </a>
-        </Typography>
-      </div>
     </>
   );
 };

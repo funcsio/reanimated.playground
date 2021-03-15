@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+<div align="center">
+<img src="./docs/Reanimated.PLAYGROUND.png" width="80%">
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Motivation
 
-## Available Scripts
+Reanimated is Awesome 😎. And with the release of v2, it's faster, new internals & the API quite refined. Hence the semantics are a bit different from v1 therefore there's some exploration and tinkering required to get comfortable with the new API.
 
-In the project directory, you can run:
+### How it bridges the gap?
 
-### `yarn start`
+The idea behind this playground is inspired by a similar problem I have solved in past by React Native Elements Playground 🚀.
+With this, a user can test various possibilities with the ecosystem and generate a code snippet on the fly (coming soon).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### State of the Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The project is at a very early stage and with the help of the community, we can make it stable and add more flavours.
 
-### `yarn test`
+### Support the Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Please consider contributing to the project with code or innovation playground ideas.
 
-### `yarn build`
+#### Related
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
+- [moti](https://github.com/nandorojo/moti)
+- [react-native-web](https://github.com/necolas/react-native-web)
+- [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler#readme)
+- [expo](https://github.com/software-mansion/react-native-gesture-handler#readme)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
