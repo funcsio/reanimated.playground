@@ -8,6 +8,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import HomePage from "../../pages/Home";
 import { Dimensions, Tranform, Colors } from "../../playground/reanimated";
 import { Moti } from "../../playground/community";
 export const Reanimated_Components_Index = [
@@ -39,6 +40,8 @@ export default function Navigation() {
   return (
     <React.Fragment>
       <Switch>
+        <Route path="/" component={HomePage} exact />
+
         <Route path="/reanimated">
           {Reanimated_Components_Index.map((elm, idx) => {
             return (

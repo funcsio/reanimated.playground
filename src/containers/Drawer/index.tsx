@@ -17,7 +17,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { Button, Container, Divider } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
+import Logo from "../../assets/logo-split.svg";
 import Navigation from "../Navigation";
 import { Link } from "react-router-dom";
 import {
@@ -60,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "1.5rem",
     minHeight: "100vh",
   },
+  parentElm: {
+    paddingLeft: "0.5rem",
+  },
 }));
 
 function ResponsiveDrawer(props: any) {
@@ -69,49 +72,62 @@ function ResponsiveDrawer(props: any) {
   const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
 
   const handleDrawerToggle = (value: any) => {
-    if (value !== null) {
-      setMobileOpen(value);
+    if (value === false) {
+      setMobileOpen(false);
     } else {
-      setMobileOpen(!mobileOpen);
+      setMobileOpen(true);
     }
   };
 
   const drawer = (
     <div>
       <div style={{ padding: "0.5rem" }}>
-        <Link to="/">
-          <Typography style={{ fontWeight: 100 }} variant="h5">
-            Playground 🚀
-          </Typography>
+        <Link to="/" onClick={() => handleDrawerToggle(false)}>
+          <img
+            src={Logo}
+            alt="reanimated.playground logo"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+            }}
+          />
+          <Divider />
+          <Typography style={{ fontWeight: 100 }} variant="h5"></Typography>
         </Link>
       </div>
-      <List>
-        {Reanimated_Components_Index.map((elm, index) => (
-          <Link
-            key={elm.name}
-            to={`/reanimated/${elm.path}`}
-            onClick={() => handleDrawerToggle(false)}
-          >
-            <ListItem button key={elm.name}>
-              <ListItemText primary={elm.name} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {Community_Components_Index.map((elm, index) => (
-          <Link
-            key={elm.name}
-            to={`/community/${elm.path}`}
-            onClick={() => handleDrawerToggle(false)}
-          >
-            <ListItem button key={elm.name}>
-              <ListItemText primary={elm.name} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+      <div className={classes.parentElm}>
+        <Typography variant="h6">Reanimated</Typography>
+        <List>
+          {Reanimated_Components_Index.map((elm, index) => (
+            <Link
+              key={elm.name}
+              to={`/reanimated/${elm.path}`}
+              onClick={() => handleDrawerToggle(false)}
+            >
+              <ListItem button key={elm.name}>
+                <ListItemText primary={elm.name} />
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+      </div>
+
+      <div className={classes.parentElm}>
+        <Typography variant="h6">Community</Typography>
+        <List className={classes.parentElm}>
+          {Community_Components_Index.map((elm, index) => (
+            <Link
+              key={elm.name}
+              to={`/community/${elm.path}`}
+              onClick={() => handleDrawerToggle(false)}
+            >
+              <ListItem button key={elm.name}>
+                <ListItemText primary={elm.name} />
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+      </div>
     </div>
   );
 
@@ -138,16 +154,10 @@ function ResponsiveDrawer(props: any) {
             </Typography>
           </Link>
           <div style={{ marginLeft: "auto" }}>
-            <a
-              href="https://docs.swmansion.com/react-native-reanimated/"
-              target="_blank"
-            >
-              <Button color="inherit">Docs</Button>
-            </a>
             <IconButton
               color="inherit"
               rel="noopener noreferrer"
-              href="https://github.com/react-native-elements/react-native-elements"
+              href="https://github.com/funcsio/reanimated.playground"
               target="_blank"
             >
               <GitHub />
@@ -163,7 +173,7 @@ function ResponsiveDrawer(props: any) {
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
-            onClose={handleDrawerToggle}
+            onClose={() => handleDrawerToggle(false)}
             classes={{
               paper: classes.drawerPaper,
             }}
@@ -188,9 +198,11 @@ function ResponsiveDrawer(props: any) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Container maxWidth="lg">
-          <Navigation />
+          <div style={{ maxWidth: "100vw" }}>
+        <Container style={{ minHeight: "80vh" }} maxWidth="lg">
+            <Navigation />
         </Container>
+          </div>
       </main>
     </div>
   );

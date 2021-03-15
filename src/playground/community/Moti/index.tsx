@@ -9,11 +9,13 @@ const Content = lazy(() => importMDX("./content.mdx"));
 const MotiPlaygroundPage: React.FunctionComponent<{}> = () => {
   return (
     <div>
-      <MDXProvider components={components}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Content />
-        </Suspense>
-      </MDXProvider>
+      <div style={{ overflowX: "scroll" }}>
+        <MDXProvider components={components}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Content />
+          </Suspense>
+        </MDXProvider>
+      </div>
       <MotiPlayground />
       <br />
       <Typography variant="h4">Showcase</Typography>

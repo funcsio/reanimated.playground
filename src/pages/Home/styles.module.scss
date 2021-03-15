@@ -1,0 +1,81 @@
+.root {
+  width: 100%;
+  min-height: 100%;
+}
+.hero {
+  width: 100%;
+  min-height: 400px;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heroImg {
+  width: 95%;
+}
+.tagline {
+  font-size: calc(1rem + 1vw);
+}
+
+.demoColors {
+  background: linear-gradient(
+    0deg,
+    #06d6a0 0%,
+    #06d6a0 50%,
+    #1b9aaa 50%,
+    #1b9aaa 100%
+  );
+  color: #fff;
+  background-color: #c73e1d;
+  background-image: linear-gradient(
+    315deg,
+    #c73e1d 0%,
+    #a23b72 37%,
+    #2e86ab 100%
+  );
+}
+.demoTransform {
+  // border-radius: 20px;
+  background: #061a72;
+  color: #fff;
+}
+.demoDimensions {
+  outline: 5px dashed #ccc;
+  outline-offset: -5px;
+}
+.demoMoti {
+  background: #f6d5f7;
+}
+
+.featureCard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0px 10px;
+  color: #fafafa;
+}
+.badgeCommunity {
+  background: linear-gradient(90deg, #fd834d, #f54);
+}
+
+.badgeReanimated {
+  background: linear-gradient(90deg, #392d69, #3d05dd);
+}
+
+.more {
+  font-size: calc(1.5rem + 2vmin);
+  text-align: center;
+  color: #888;
+}
