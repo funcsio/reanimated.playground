@@ -1,6 +1,7 @@
 {
   "name": "reanimated.playground",
-  "version": "0.1.0",
+  "version": "21.03.16",
+  "homepage": "https://reanimated.funcs.io",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
