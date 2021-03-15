@@ -1,4 +1,4 @@
-#### Moti
+### Moti
 
 Moti is the universal animation package for React Native, made by [Fernando Rojo](https://twitter.com/fernandotherojo).
 
@@ -28,7 +28,7 @@ Moti is the universal animation package for React Native, made by [Fernando Rojo
 - Expo support
 - Next.js support
 
----
+
 
 Moti has a number of powerful features that make your animations slick and simple.
 
@@ -41,13 +41,24 @@ import { View, Text } from "moti";
 You can set the initial state with `from`. Any styles passed to `animate` will transition for you.
 
 ```tsx
-<View from={{ opacity: 0 }} animate={{ opacity: 1 }} />
+<View 
+  from={{ 
+    opacity: 0
+  }} 
+  animate={{ 
+    opacity: 1
+   }} 
+/>
 ```
 
 ##### Animate based on React state
 
 ```tsx
-<View animate={{ opacity: isLoading ? 1 : 0 }} />
+<View 
+  animate={{ 
+    opacity: isLoading ? 1 : 0 
+  }} 
+/>
 ```
 
 This is useful for dynamic height changes, for instance.
@@ -68,8 +79,14 @@ Moti animations are highly configurable, thanks to the `transition` prop. If you
 
 ```tsx
 <View
-  from={{ opacity: 0, scale: 0.5 }}
-  animate={{ opacity: 1, scale: 1 }}
+  from={{ 
+    opacity: 0, 
+    scale: 0.5 
+  }}
+  animate={{ 
+    opacity: 1, 
+    scale: 1 
+  }}
   transition={{
     type: "timing",
     duration: 350,
@@ -81,10 +98,15 @@ You can also configure different transitions per-style:
 
 ```tsx
 <View
-  from={{ opacity: 0, scale: 0.5 }}
-  animate={{ opacity: 1, scale: 1 }}
+  from={{ 
+    opacity: 0, 
+    scale: 0.5 
+    }}
+  animate={{ 
+    opacity: 1, 
+    scale: 1
+    }}
   transition={{
-    // default settings for all style values
     type: "timing",
     duration: 350,
     // set a custom transition for scale

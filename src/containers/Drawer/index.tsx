@@ -24,7 +24,7 @@ import {
   Reanimated_Components_Index,
   Community_Components_Index,
 } from "../Navigation";
-
+import Footer from "../Footer";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -198,11 +198,12 @@ function ResponsiveDrawer(props: any) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-          <div style={{ maxWidth: "100vw" }}>
-        <Container style={{ minHeight: "80vh" }} maxWidth="lg">
+        <div style={{ maxWidth: "100vw" }}>
+          <Container style={{ minHeight: "80vh" }} maxWidth="lg">
             <Navigation />
-        </Container>
-          </div>
+          </Container>
+          <Footer />
+        </div>
       </main>
     </div>
   );

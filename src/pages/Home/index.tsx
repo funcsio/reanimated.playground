@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/Feather";
 import Logo from "../../assets/logo.svg";
 import MotiLogo from "../../assets/moti.svg";
 import stylesCSS from "./styles.module.scss";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -17,40 +18,50 @@ const HomePage = () => {
 
       <Grid container spacing={4} justify="center">
         <Grid item xs={12} sm={6} md={4} lg={3}>
-          <div className={clsx(stylesCSS.demoColors, stylesCSS.featureCard)}>
-            <ReanimatedBadge />
-            <Typography variant="h4" className={stylesCSS.featureHeading}>
-              Colors
-            </Typography>
-            <MUIcons.PaletteRounded fontSize="large" />
-          </div>
+          <Link to="/reanimated/colors">
+            <div className={clsx(stylesCSS.demoColors, stylesCSS.featureCard)}>
+              <ReanimatedBadge />
+              <Typography variant="h4" className={stylesCSS.featureHeading}>
+                Colors
+              </Typography>
+              <MUIcons.PaletteRounded fontSize="large" />
+            </div>
+          </Link>
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
-          <div
-            className={clsx(stylesCSS.demoDimensions, stylesCSS.featureCard)}
-          >
-            <ReanimatedBadge />
-            <Typography variant="h4" className={stylesCSS.featureHeading}>
-              Dimensions
-            </Typography>
-            <Icon name="maximize-2" size={30} />
-          </div>
+          <Link to="/reanimated/dimensions">
+            <div
+              className={clsx(stylesCSS.demoDimensions, stylesCSS.featureCard)}
+            >
+              <ReanimatedBadge />
+              <Typography variant="h4" className={stylesCSS.featureHeading}>
+                Dimensions
+              </Typography>
+              <Icon name="maximize-2" size={30} />
+            </div>
+          </Link>
         </Grid>
 
         <Grid item xs={12} sm={6} md={4} lg={3}>
-          <div className={clsx(stylesCSS.demoTransform, stylesCSS.featureCard)}>
-            <ReanimatedBadge />
-            <Typography variant="h4" className={stylesCSS.featureHeading}>
-              Transform
-            </Typography>
-            <Icon name="move" size={30} color="#fafafa" />
-          </div>
+          <Link to="/reanimated/transform">
+            <div
+              className={clsx(stylesCSS.demoTransform, stylesCSS.featureCard)}
+            >
+              <ReanimatedBadge />
+              <Typography variant="h4" className={stylesCSS.featureHeading}>
+                Transform
+              </Typography>
+              <Icon name="move" size={30} color="#fafafa" />
+            </div>
+          </Link>
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
-          <div className={clsx(stylesCSS.demoMoti, stylesCSS.featureCard)}>
-            <CommunityBadge />
-            <img src={MotiLogo} style={{ width: "40%", maxWidth: 150 }} />
-          </div>
+          <Link to="/community/moti">
+            <div className={clsx(stylesCSS.demoMoti, stylesCSS.featureCard)}>
+              <CommunityBadge />
+              <img src={MotiLogo} style={{ width: "40%", maxWidth: 150 }} />
+            </div>
+          </Link>
         </Grid>
         <Grid item xs>
           <Typography className={stylesCSS.more}>

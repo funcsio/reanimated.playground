@@ -11,6 +11,8 @@ import { Helmet } from "react-helmet";
 import HomePage from "../../pages/Home";
 import { Dimensions, Tranform, Colors } from "../../playground/reanimated";
 import { Moti } from "../../playground/community";
+import Footer from "../Footer";
+
 export const Reanimated_Components_Index = [
   {
     name: "Dimensions",
@@ -67,6 +69,7 @@ export default function Navigation() {
           })}
         </Route>
       </Switch>
+      
     </React.Fragment>
   );
 }
