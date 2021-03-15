@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e1844859.chunk.css",
+    "main.js": "/static/js/main.6a1dda99.chunk.js",
+    "main.js.map": "/static/js/main.6a1dda99.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.882db8d2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.882db8d2.js.map",
+    "static/js/2.997aff33.chunk.js": "/static/js/2.997aff33.chunk.js",
+    "static/js/2.997aff33.chunk.js.map": "/static/js/2.997aff33.chunk.js.map",
+    "static/js/3.174d6e05.chunk.js": "/static/js/3.174d6e05.chunk.js",
+    "static/js/3.174d6e05.chunk.js.map": "/static/js/3.174d6e05.chunk.js.map",
+    "static/js/4.5e6e9fc0.chunk.js": "/static/js/4.5e6e9fc0.chunk.js",
+    "static/js/4.5e6e9fc0.chunk.js.map": "/static/js/4.5e6e9fc0.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.e1844859.chunk.css.map": "/static/css/main.e1844859.chunk.css.map",
+    "static/js/2.997aff33.chunk.js.LICENSE.txt": "/static/js/2.997aff33.chunk.js.LICENSE.txt",
+    "static/media/escape-regexp.cjs": "/static/media/escape-regexp.04fafb46.cjs",
+    "static/media/logo-split.f2389545.svg": "/static/media/logo-split.f2389545.svg",
+    "static/media/logo.82cefafc.svg": "/static/media/logo.82cefafc.svg",
+    "static/media/moti.e5b20e44.svg": "/static/media/moti.e5b20e44.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.882db8d2.js",
+    "static/js/2.997aff33.chunk.js",
+    "static/css/main.e1844859.chunk.css",
+    "static/js/main.6a1dda99.chunk.js"
+  ]
+}
