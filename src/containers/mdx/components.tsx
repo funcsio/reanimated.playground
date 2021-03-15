@@ -8,6 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
+import CodeBlock from './CodeBlock'
 
 const components = {
   p: Typography,
@@ -81,7 +82,7 @@ const components = {
     const THead = (props) => <TableHead {...props} />;
     return memo(THead);
   })(),
-  // code: CodeBlock,
+  code: CodeBlock,
   hr: Divider,
   input: (() => {
     const Input = (props) => {

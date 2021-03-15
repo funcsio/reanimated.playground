@@ -77,7 +77,6 @@ const MotiPlayground = () => {
       </View> */}
 
         <div style={{ textAlign: "center" }}>
-          {" "}
           <FormLabel component="span">Unmount</FormLabel>
           <KnobsComponents.Switch
             label=""

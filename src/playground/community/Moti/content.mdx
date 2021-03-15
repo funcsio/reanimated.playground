@@ -1,0 +1,99 @@
+#### Moti
+
+Moti is the universal animation package for React Native, made by [Fernando Rojo](https://twitter.com/fernandotherojo).
+
+```tsx
+<View
+  from={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{
+    opacity: 0,
+  }}
+/>
+```
+
+##### Highlights
+
+- Universal: works on all platforms
+- 60 FPS animations run on the native thread
+- Mount/unmount animations, like Framer Motion
+- Powered by Reanimated 2
+- Intuitive API
+- Variant & keyframe animations
+- Strong TypeScript support
+- Highly-configurable animations
+- Sequence animations
+- Loop & repeat animations
+- Web support
+- Expo support
+- Next.js support
+
+---
+
+Moti has a number of powerful features that make your animations slick and simple.
+
+```ts
+import { View, Text } from "moti";
+```
+
+##### Mount animations
+
+You can set the initial state with `from`. Any styles passed to `animate` will transition for you.
+
+```tsx
+<View from={{ opacity: 0 }} animate={{ opacity: 1 }} />
+```
+
+##### Animate based on React state
+
+```tsx
+<View animate={{ opacity: isLoading ? 1 : 0 }} />
+```
+
+This is useful for dynamic height changes, for instance.
+
+```tsx
+const [height, setHeight] = useMeasure()
+
+<View
+  animate={{
+    height,
+  }}
+/>
+```
+
+##### Customize your animation
+
+Moti animations are highly configurable, thanks to the `transition` prop. If you've used `framer-motion`, this will look familiar.
+
+```tsx
+<View
+  from={{ opacity: 0, scale: 0.5 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{
+    type: "timing",
+    duration: 350,
+  }}
+/>
+```
+
+You can also configure different transitions per-style:
+
+```tsx
+<View
+  from={{ opacity: 0, scale: 0.5 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{
+    // default settings for all style values
+    type: "timing",
+    duration: 350,
+    // set a custom transition for scale
+    scale: {
+      type: "spring",
+      delay: 100,
+    },
+  }}
+/>
+```
+
+If you set `type: 'spring'`, you can pass any options that Reanimated's `withSpring` accepts. Same goes for `type: 'timing'` & Reanimated's `withTiming`.
